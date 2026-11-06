@@ -15,7 +15,7 @@ export function resolveContact(email?: string, linkedin?: string): ContactDetail
 
 export const profile = {
   name: 'Cálamo Andret',
-  headline: 'Software Engineering Student | Python Backend & AI Integration',
+  headline: 'Software Engineering Graduate | Python Backend & AI Integration',
   github: 'https://github.com/CalamoAndret',
   location: 'Based in Brazil',
   contact: resolveContact(
@@ -23,7 +23,7 @@ export const profile = {
     import.meta.env.VITE_LINKEDIN_URL?.trim() || 'https://www.linkedin.com/in/c%C3%A1lamo-andret-377481238/',
   ),
   about: [
-    'I’m a Software Engineering student in Brazil, interested in what makes software dependable beyond the happy path.',
+    'I’m a Software Engineering graduate in Brazil, interested in what makes software dependable beyond the happy path.',
     'My practical background in IT support and infrastructure shapes how I approach development: understand the problem, make the system easier to reason about, and verify that it works. Today, I’m applying that mindset to Python backends, automated testing, and AI-powered workflows.',
   ],
 }
