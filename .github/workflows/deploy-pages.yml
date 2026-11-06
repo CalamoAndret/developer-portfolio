@@ -1,0 +1,54 @@
+name: Deploy to GitHub Pages (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - name: Configure public paths
+        shell: bash
+        env:
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+          OWNER: ${{ github.repository_owner }}
+          CUSTOM_BASE: ${{ vars.BASE_PATH }}
+          CUSTOM_URL: ${{ vars.SITE_URL }}
+        run: |
+          base="/$REPOSITORY_NAME/"
+          if [[ "${REPOSITORY_NAME,,}" == "${OWNER,,}.github.io" ]]; then base="/"; fi
+          base="${CUSTOM_BASE:-$base}"
+          echo "BASE_PATH=$base" >> "$GITHUB_ENV"
+          echo "SITE_URL=${CUSTOM_URL:-https://${OWNER}.github.io${base}}" >> "$GITHUB_ENV"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+        env:
+          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
+          VITE_LINKEDIN_URL: ${{ vars.VITE_LINKEDIN_URL }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
