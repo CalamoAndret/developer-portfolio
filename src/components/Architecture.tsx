@@ -1,4 +1,4 @@
-import { Braces, CheckCheck, Database, FileText, Layers3, Server, Sparkles } from 'lucide-react'
+import { Braces, Carrot, CheckCheck, ChefHat, Database, FileText, Layers3, Server, Sparkles } from 'lucide-react'
 
 export function Architecture() {
   return (
@@ -22,6 +22,13 @@ export function Architecture() {
 }
 
 export function ProjectVisual({ variant }: { variant: string }) {
+  if (variant === 'recipes') return (
+    <div className="project-visual recipes-visual" role="img" aria-label="Recipe workflow: ingredients go to a server-side AI route, which returns validated recipe JSON with macros">
+      <div className="visual-topline mono"><span><span className="tiny-square" /> FROM FRIDGE TO PLATE</span><span>architecture / 03</span></div>
+      <div className="document-flow"><div className="paper-sheet"><Carrot size={26} strokeWidth={1.3} /><i /><i /><i /><span className="mono">ingredients</span></div><span className="flow-connector" /><div className="processor"><ChefHat size={26} /><small className="mono">GENERATE</small></div><span className="flow-connector" /><div className="json-sheet mono"><Braces size={22} /><span><b>"name"</b>: "Spinach omelette",</span><span><b>"macros"</b>: {'{ protein: 24 }'},</span><span><b>"missing"</b>: [ ... ]</span></div></div>
+      <div className="visual-bottomline mono"><span>PROMPT <span>→</span> SCHEMA <span>→</span> VALIDATE</span><span>clean recipes <CheckCheck size={13} /></span></div>
+    </div>
+  )
   return variant === 'document' ? (
     <div className="project-visual document-visual" role="img" aria-label="Document workflow: upload, extract with a worker, validate, then produce structured JSON">
       <div className="visual-topline mono"><span><span className="tiny-square" /> DOCUMENT PIPELINE</span><span>architecture / 01</span></div>

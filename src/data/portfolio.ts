@@ -65,6 +65,15 @@ export const projects: Project[] = [
     github: 'https://github.com/CalamoAndret/python-backend-testing-lab',
     note: 'Runs locally · Includes a deliberate bug-detection demonstration',
   },
+  // Claims checked against the public repository README on November 10, 2026.
+  {
+    id: 'recipes', number: '03', category: 'FULL-STACK · AI INTEGRATION', title: 'AI Recipe Generator',
+    description: 'From the ingredients you already have to three personalized recipes. A Next.js app that turns a fridge inventory, a fitness goal, and dietary restrictions into recipes with macros per serving, dish photos, and a shopping list.',
+    features: ['Server-side route calling Gemini or Claude with schema-constrained JSON output', 'Validation layer that normalizes every AI response before it reaches the UI', 'Dish photos from Pixabay with TheMealDB fallback and in-memory caching'],
+    technologies: ['Next.js', 'React', 'JavaScript', 'Tailwind CSS', 'Gemini API'],
+    github: 'https://github.com/CalamoAndret/ai-recipe-generator',
+    note: 'Runs locally · Demo mode works without an API key',
+  },
 ]
 
 export const responsibilities = [
