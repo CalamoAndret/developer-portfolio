@@ -72,7 +72,7 @@ export const projects: Project[] = [
     features: ['Server-side route calling Gemini or Claude with schema-constrained JSON output', 'Validation layer that normalizes every AI response before it reaches the UI', 'Dish photos from Pixabay with TheMealDB fallback and in-memory caching'],
     technologies: ['Next.js', 'React', 'JavaScript', 'Tailwind CSS', 'Gemini API'],
     github: 'https://github.com/CalamoAndret/ai-recipe-generator',
-    note: 'Runs locally · Demo mode works without an API key',
+    note: 'Live demo: ai-recipe-generator-calamo.vercel.app · No sign-up needed',
   },
 ]
 
